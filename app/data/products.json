@@ -1,0 +1,16 @@
+[
+  {
+    "id": "p1",
+    "name": "scrub",
+    "price": 2000,
+    "image": "/images/scrub.png",
+    "description": "scrub description"
+  },
+  {
+    "id": "p2",
+    "name": "showerGel",
+    "price": 3000,
+    "image": "/images/showerGel.png",
+    "description": "showerGel description"
+  }
+]
