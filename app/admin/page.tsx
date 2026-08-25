@@ -11,6 +11,7 @@ const emptyForm = {
 
 function AdminPage() {
     const [form, setForm] = useState(emptyForm)
+    // const [loading, setLoading] = useState(false)
     const handleSubmit = () => {
         //todo:
     }
@@ -70,6 +71,7 @@ function AdminPage() {
                         disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         Save
+                        {/*{loading ? 'Saving...' : 'Save'}*/}
                     </button>
                 </form>
             </section>
