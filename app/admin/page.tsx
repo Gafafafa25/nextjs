@@ -42,6 +42,26 @@ function AdminPage() {
                                disabled:cursor-not-allowed"
                                required/>
                     </label>
+                    <label className="block text-sm font-medium text-gray-700">Description
+                        <input type="text" value={form.description}
+                               onChange={(e) => {
+                                   setForm({...form, description: e.target.value})
+                               }}
+                               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none
+                               focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50
+                               disabled:cursor-not-allowed"
+                               required/>
+                    </label>
+                    <label className="block text-sm font-medium text-gray-700">Price
+                        <input type="text" value={form.price}
+                               onChange={(e) => {
+                                   setForm({...form, price: e.target.value})
+                               }}
+                               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none
+                               focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50
+                               disabled:cursor-not-allowed"
+                               required/>
+                    </label>
                     {/*todo: others*/}
                 </form>
             </section>
