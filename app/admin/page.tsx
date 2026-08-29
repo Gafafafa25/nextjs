@@ -1,6 +1,6 @@
 'use client';
 
-import {FormEvent, useEffect, useState} from "react";
+import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import type {Product} from "@/app/types/product";
 import {getProducts} from "@/app/lib/products";
 
@@ -18,6 +18,11 @@ function AdminPage() {
         e.preventDefault();
         //todo: сформировать объект типа Product и вывести сообщение что сохранено
     }
+
+    const handleAdd = (e: ChangeEvent<HTMLInputElement>) => {
+        // todo:
+    }
+
     // const [products, setProducts] = useState<Product[]>([])
     const [products, setProducts] = useState<Product[]>([
         {
@@ -92,18 +97,29 @@ function AdminPage() {
                     </button>
                 </form>
             </section>
-            <section>
-                <h2>Products</h2>
+            <article className="container mx-auto px-4 py-8 max-w-4xl">
                 <div>
+                    <h2 className="text-3xl font-bold mb-8 text-gray-900">Products</h2>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {products.map((product: Product) => (
                         <div key={product.id}>
                             Name {product.name} {product.price}
-                            <img src={product.image} alt={product.name}/>
+                            <img src={product.image}
+                                 alt={product.name}
+                                // fill
+                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
                             Description {product.description}
+                            <button
+                                onClick={handleAdd}
+                                className={`w-full py-2.5 px-4 rounded-md text-sm font-medium transition-all duration-200 
+                    bg-black text-white hover:bg-gray-700 hover:shadow-md`}>Add</button>
                         </div>
                     ))}
                 </div>
-            </section>
+            </article>
         </main>
     )
 }

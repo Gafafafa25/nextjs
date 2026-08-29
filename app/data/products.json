@@ -1,23 +1,45 @@
 [
   {
     "id": "p1",
-    "name": "scrub",
+    "name": "body-scrub",
     "price": 2000,
-    "image": "/images/products/scrub.png",
-    "description": "scrub description"
+    "image": "/images/products/body-scrub.jpg",
+    "description": "body-scrub description"
   },
   {
     "id": "p2",
-    "name": "showerGel",
+    "name": "whey",
     "price": 3000,
-    "image": "/images/products/showerGel.png",
-    "description": "showerGel description"
+    "image": "/images/products/whey.jpg",
+    "description": "whey description"
   },
   {
     "id": "p3",
-    "name": "showerGel",
+    "name": "spray",
     "price": 3000,
-    "image": "/images/products/showerGel.png",
-    "description": "showerGel description"
+    "image": "/images/products/spray.jpg",
+    "description": "shower-gel description"
+  },
+  {
+    "id": "p4",
+    "name": "shower-gel",
+    "price": 3000,
+    "image": "/images/products/shower-gel.jpg",
+    "description": "shower-gel description"
+  },
+  {
+    "id": "p5",
+    "name": "body-lotion",
+    "price": 3000,
+    "image": "/images/products/body-lotion.jpg",
+    "description": "body-lotion description"
+  }
+,
+  {
+    "id": "p6",
+    "name": "facial-peeling",
+    "price": 3000,
+    "image": "/images/products/facial-peeling.jpg",
+    "description": "facial-peeling description"
   }
 ]
