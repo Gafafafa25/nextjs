@@ -16,7 +16,13 @@ function AdminPage() {
     // const [loading, setLoading] = useState(false)
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        //todo: сформировать объект типа Product и вывести сообщение что сохранено
+        // const product: Product = {
+        //     name: e.name,
+        //     price: e.price,
+        //     image: e.image,
+        //     description: e.description
+        // }
+        // //todo: сформировать объект типа Product и вывести сообщение что сохранено
     }
 
     const handleAdd = (e: ChangeEvent<HTMLInputElement>) => {
