@@ -2,11 +2,11 @@
 
 import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import type {Product} from "@/app/types/product";
-import {getProducts} from "@/app/lib/products";
+import {getProducts, createId} from "@/app/lib/products";
 
 const emptyForm = {
     name: "",
-    price: "",
+    price: 0,
     image: "", //todo: path
     description: ""
 }
@@ -16,13 +16,13 @@ function AdminPage() {
     // const [loading, setLoading] = useState(false)
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // const product: Product = {
-        //     name: e.name,
-        //     price: e.price,
-        //     image: e.image,
-        //     description: e.description
-        // }
-        // //todo: сформировать объект типа Product и вывести сообщение что сохранено
+        const product: Product = {
+            id: createId(),
+            name: form.name,
+            price: Number(form.price),
+            image: form.image,
+            description: form.description
+        }
     }
 
     const handleAdd = (e: ChangeEvent<HTMLInputElement>) => {
