@@ -1,6 +1,8 @@
 'use client';
 
-import {useState} from "react";
+import {FormEvent, useEffect, useState} from "react";
+import type {Product} from "@/app/types/product";
+import {getProducts} from "@/app/lib/products";
 
 const emptyForm = {
     name: "",
@@ -12,9 +14,24 @@ const emptyForm = {
 function AdminPage() {
     const [form, setForm] = useState(emptyForm)
     // const [loading, setLoading] = useState(false)
-    const handleSubmit = () => {
-        //todo:
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        //todo: сформировать объект типа Product и вывести сообщение что сохранено
     }
+    // const [products, setProducts] = useState<Product[]>([])
+    const [products, setProducts] = useState<Product[]>([
+        {
+            "id": "p1",
+            "name": "scrub",
+            "price": 2000,
+            "image": "/images/scrub.png",
+            "description": "scrub description"
+        }
+    ])
+
+    useEffect(() => {
+        setProducts(getProducts())
+    }, [])
 
     return (
         <main>
@@ -74,6 +91,18 @@ function AdminPage() {
                         {/*{loading ? 'Saving...' : 'Save'}*/}
                     </button>
                 </form>
+            </section>
+            <section>
+                <h2>Products</h2>
+                <div>
+                    {products.map((product: Product) => (
+                        <div key={product.id}>
+                            Name {product.name} {product.price}
+                            <img src={product.image} alt={product.name}/>
+                            Description {product.description}
+                        </div>
+                    ))}
+                </div>
             </section>
         </main>
     )

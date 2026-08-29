@@ -3,14 +3,21 @@
     "id": "p1",
     "name": "scrub",
     "price": 2000,
-    "image": "/images/scrub.png",
+    "image": "/images/products/scrub.png",
     "description": "scrub description"
   },
   {
     "id": "p2",
     "name": "showerGel",
     "price": 3000,
-    "image": "/images/showerGel.png",
+    "image": "/images/products/showerGel.png",
+    "description": "showerGel description"
+  },
+  {
+    "id": "p3",
+    "name": "showerGel",
+    "price": 3000,
+    "image": "/images/products/showerGel.png",
     "description": "showerGel description"
   }
 ]
