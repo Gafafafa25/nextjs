@@ -1,9 +1,10 @@
 'use client';
 
-import { FormEvent, useEffect, useState} from "react";
+import {FormEvent, useEffect, useState} from "react";
 import type {Product} from "@/app/types/product";
-import {getProducts, createId} from "@/app/lib/products";
-// import {getProducts} from "@/app/lib/products-db"
+import {createId} from "@/app/lib/products";
+// import {getProducts, createId} from "@/app/lib/products";
+import {getProducts} from "@/app/lib/products-db"
 
 const emptyForm = {
     name: "",
@@ -30,21 +31,21 @@ function AdminPage() {
         // todo:
     }
 
-    const [products, setProducts] = useState<Product[]>(getProducts())
-    // const [products, setProducts] = useState<Product[]>([
-    //     {
-    //         "id": "p1",
-    //         "name": "scrub",
-    //         "price": 2000,
-    //         "image": "/images/products/body-scrub.jpg",
-    //         "description": "scrub description"
-    //     }
-    // ])
+    // const [products, setProducts] = useState<Product[]>(getProducts())
+    const [products, setProducts] = useState<Product[]>([
+        {
+            "id": "p1",
+            "name": "scrub",
+            "price": 2000,
+            "image": "/images/products/body-scrub.jpg",
+            "description": "scrub description"
+        }
+    ])
 
-    // useEffect(() => {
-    //     setProducts( getProducts())
+    useEffect(() => {
+        setProducts(getProducts())
         console.log("+", products)
-    // }, [])
+    }, [])
 
     return (
         <main>
