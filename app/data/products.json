@@ -4,35 +4,35 @@
     "name": "body-scrub",
     "price": 2000,
     "image": "/images/products/body-scrub.jpg",
-    "description": "body-scrub description"
+    "description": "Body scrub gently exfoliates and renews the skin layer..."
   },
   {
     "id": "p2",
     "name": "whey",
     "price": 3000,
     "image": "/images/products/whey.jpg",
-    "description": "whey description"
+    "description": "Whey protein supports muscle growth and recovery daily..."
   },
   {
     "id": "p3",
     "name": "spray",
     "price": 3000,
     "image": "/images/products/spray.jpg",
-    "description": "shower-gel description"
+    "description": "Spray ensures light and even application every time..."
   },
   {
     "id": "p4",
     "name": "shower-gel",
     "price": 3000,
     "image": "/images/products/shower-gel.jpg",
-    "description": "shower-gel description"
+    "description": "Shower gel delicately cleanses and softens the skin..."
   },
   {
     "id": "p5",
     "name": "body-lotion",
     "price": 3000,
     "image": "/images/products/body-lotion.jpg",
-    "description": "body-lotion description"
+    "description": "Body lotion deeply moisturizes and nourishes the skin..."
   }
 ,
   {
@@ -40,6 +40,6 @@
     "name": "facial-peeling",
     "price": 3000,
     "image": "/images/products/facial-peeling.jpg",
-    "description": "facial-peeling description"
+    "description": "Facial peeling gently removes dead skin cells each use..."
   }
 ]

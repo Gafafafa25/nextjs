@@ -1,6 +1,6 @@
 'use client';
 
-import {ChangeEvent, FormEvent, useEffect, useState} from "react";
+import { FormEvent, useEffect, useState} from "react";
 import type {Product} from "@/app/types/product";
 import {getProducts, createId} from "@/app/lib/products";
 
@@ -25,7 +25,7 @@ function AdminPage() {
         }
     }
 
-    const handleAdd = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleAdd = () => {
         // todo:
     }
 
@@ -84,7 +84,7 @@ function AdminPage() {
                     <label className="block text-sm font-medium text-gray-700">Price
                         <input type="text" value={form.price}
                                onChange={(e) => {
-                                   setForm({...form, price: e.target.value})
+                                   setForm({...form, price: Number(e.target.value)})
                                }}
                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none
                                focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50
@@ -103,25 +103,26 @@ function AdminPage() {
                     </button>
                 </form>
             </section>
-            <article className="container mx-auto px-4 py-8 max-w-4xl">
+            <article className="container max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
                 <div>
                     <h2 className="text-3xl font-bold mb-8 text-gray-900">Products</h2>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {products.map((product: Product) => (
                         <div key={product.id}>
-                            Name {product.name} {product.price}
+                            <h3 className="text-2xl font-bold mb-2">{product.name}</h3>
                             <img src={product.image}
                                  alt={product.name}
-                                // fill
                                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             />
-                            Description {product.description}
+                            <span className="text-xl font-bold text-gray-800">{product.price}</span>
+                            <p className="text-gray-600 mb-4">{product.description}</p>
                             <button
                                 onClick={handleAdd}
                                 className={`w-full py-2.5 px-4 rounded-md text-sm font-medium transition-all duration-200 
-                    bg-black text-white hover:bg-gray-700 hover:shadow-md`}>Add</button>
+                    bg-black text-white hover:bg-gray-700 hover:shadow-md`}>Add
+                            </button>
                         </div>
                     ))}
                 </div>
