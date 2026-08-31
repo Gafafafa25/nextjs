@@ -1,2 +1,7 @@
 npm install pg
 npm install --save-dev @types/pg
+
+
+postgresql:
+ALTER TABLE products ALTER COLUMN price TYPE numeric(10, 2) USING price::numeric(10,2);
+

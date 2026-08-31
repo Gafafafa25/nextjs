@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useState} from "react";
 import type {Product} from "@/app/types/product";
 import {getProducts, createId} from "@/app/lib/products";
+// import {getProducts} from "@/app/lib/products-db"
 
 const emptyForm = {
     name: "",
@@ -29,20 +30,21 @@ function AdminPage() {
         // todo:
     }
 
-    // const [products, setProducts] = useState<Product[]>([])
-    const [products, setProducts] = useState<Product[]>([
-        {
-            "id": "p1",
-            "name": "scrub",
-            "price": 2000,
-            "image": "/images/scrub.png",
-            "description": "scrub description"
-        }
-    ])
+    const [products, setProducts] = useState<Product[]>(getProducts())
+    // const [products, setProducts] = useState<Product[]>([
+    //     {
+    //         "id": "p1",
+    //         "name": "scrub",
+    //         "price": 2000,
+    //         "image": "/images/products/body-scrub.jpg",
+    //         "description": "scrub description"
+    //     }
+    // ])
 
-    useEffect(() => {
-        setProducts(getProducts())
-    }, [])
+    // useEffect(() => {
+    //     setProducts( getProducts())
+        console.log("+", products)
+    // }, [])
 
     return (
         <main>
@@ -50,7 +52,6 @@ function AdminPage() {
                 <h1 className="text-4xl font-bold text-gray-900 mb-6">Admin</h1>
                 <p className="text-lg text-gray-700 leading-relaxed">Add product:</p>
                 <form onSubmit={handleSubmit} className="space-y-2">
-                    {/*todo: input - required, label, placeholder for price and others */}
                     <label className="block text-sm font-medium text-gray-700">Name
                         <input type="text" value={form.name}
                                onChange={(e) => {
