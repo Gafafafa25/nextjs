@@ -49,8 +49,9 @@ more details.
 ## DB instruction
 
 - 1 step:
-run docker app
-- 2 step: 
+  run docker app
+- 2 step:
+
 ```bash
 docker run --name nextjs-pg-container \
   -e POSTGRES_USER=user \
@@ -59,11 +60,14 @@ docker run --name nextjs-pg-container \
   -p 5433:5432 \
   -d postgres
 ```
+
 - 3 step: install DBeaver(or pg Admin)
-- 4 step: open DBeaver and click Connect to a database, choose PostgreSQL 
-- 5 step: Host: localhost, Database: nextjs-app, Port: 5433, Username: user, Password: secret, => click button Test connection 
-=> after successful test press finish
+- 4 step: open DBeaver and click Connect to a database, choose PostgreSQL
+- 5 step: Host: localhost, Database: nextjs-app, Port: 5433, Username: user, Password: secret, => click button Test
+  connection
+  => after successful test press finish
 - 6 step: right-click on the nextjs-app, open sql editor and run this code => run script button:
+
 ```sql
 CREATE TABLE public.products (
 	id text NOT NULL,
@@ -74,14 +78,82 @@ CREATE TABLE public.products (
 	CONSTRAINT products_pkey PRIMARY KEY (id)
 );
 ```
+
 - 7 step: for test add data in table => run this code:
+
 ```sql
 INSERT INTO products (id, name, price, image, description)
 VALUES ('p1', 'body-scrub', 3000.40, '/images/products/body-scrub.jpg', 'Body scrub gently exfoliates and renews the 
 skin layer...')
 ```
+
 - 8 step: run the project:
-```npm run dev```
+  ```npm run dev```
 
+## admins(staff) table
 
+- Create table 
+
+```sql
+CREATE TABLE public.staff_users (
+	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	login text NOT NULL,
+	password text NOT NULL,
+	role TEXT NOT NULL
+        CHECK (role IN ('admin', 'manager')),
+    is_active boolean NOT NULL DEFAULT true,
+    created_at timestamptz NOT NULL DEFAULT NOW()
+);
+```
+- Create table - staff sessions 
+```sql
+CREATE TABLE public.staff_sessions (
+	token_hash text PRIMARY KEY,
+	user_id BIGINT NOT NULL REFERENCES staff_users(id) ON DELETE CASCADE,
+	expires_at timestamptz NOT NULL,
+    created_at timestamptz NOT NULL DEFAULT NOW()
+);
+```
+- password with pgcrypto
+```sql
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+```
+
+```sql
+INSERT INTO staff_users (login, password, role)
+values (
+    'admin',
+    crypt('admin', gen_salt('bf')),
+    'admin'
+)
+```
+
+```sql
+INSERT INTO staff_users (login, password, role, is_active)
+values (
+    'admin2',
+    crypt('admin2', gen_salt('bf')),
+    'admin',
+    false
+)
+```
+
+```sql
+INSERT INTO staff_users (login, password, role)
+values (
+    'manager',
+    crypt('manager', gen_salt('bf')),
+    'manager'
+)
+```
+
+```sql
+INSERT INTO staff_users (login, password, role, is_active)
+values (
+    'manager2',
+    crypt('manager2', gen_salt('bf')),
+    'manager',
+    false
+)
+```
 
