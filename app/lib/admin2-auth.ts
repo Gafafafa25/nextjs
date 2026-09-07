@@ -13,12 +13,14 @@ type CurrentAdmin = {
     role: 'admin'
 }
 
+type AdminRow = CurrentAdmin
+
 function hashToken(token: string): string {
     return createHash('sha256').update(token).digest('hex')
 }
 
 export async function authenticateAdmin(login: string, password: string): Promise<CurrentAdmin | null> {
-    const result = await pool.query<CurrentAdmin>(
+    const result = await pool.query<AdminRow>(
         'SELECT id, login, role ' +
         'FROM staff_users ' +
         'WHERE login=$1 AND password=crypt($2, password) ' +
@@ -46,5 +48,21 @@ export async function createAdminSession(userId: number): Promise<void> {
 }
 
 export async function getCurrentAdmin(): Promise<CurrentAdmin | null> {
-    return null //todo:
+    const token = (await cookies()).get(COOKIE_NAME)?.value;
+    if (!token) return null;
+    const result = await pool.query<AdminRow>('SELECT users.id, users.login, users.role ' +
+        'FROM staff_sessions AS sessions' +
+        'JOIN staff_users AS users ON users.id = sessions.user_id' +
+        'WHERE sessions.token_hash=$1 AND sessions.expires_at > NOW()' +
+        "AND users.is_active=true AND users.role='admin'", [hashToken(token)]);
+    return result.rows[0] ?? null;
+}
+
+export async function deleteCurrentAdminSession(): Promise<void> {
+    const cookie = await cookies();
+    const token = cookie.get(COOKIE_NAME)?.value;
+    if (token) {
+        await pool.query('DELETE staff_sessions WHERE token_hash=$1', [hashToken(token)]);
+        cookie.delete(COOKIE_NAME);
+    }
 }
