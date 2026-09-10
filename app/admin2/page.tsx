@@ -11,6 +11,5 @@ export default async function Admin2Page() {
     }
     return (
         <Admin2Panel/>
-
     )
 }
