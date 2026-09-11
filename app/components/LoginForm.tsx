@@ -1,9 +1,14 @@
+"use client"
+
 import {FormEvent, useState} from "react";
+import {useRouter} from "next/navigation";
 
 export default function LoginForm() {
     const [login, setLogin] = useState("")
     const [password, setPassword] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
+
+    const router = useRouter()
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -19,7 +24,7 @@ export default function LoginForm() {
             setErrorMessage("Login error")
             return
         }
-        //todo: useRouter
+        router.refresh()
     }
 
     return (

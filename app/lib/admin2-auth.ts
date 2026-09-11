@@ -34,8 +34,7 @@ export async function createAdminSession(userId: number): Promise<void> {
     const tokenHash = hashToken(token);
     const expiresAt = new Date(Date.now() + SESSION_SECONDS * 1000);
     //todo: before insert - delete all expired sessions
-    await pool.query('INSERT INTO staff_sessions(token_hash, user_id, expires_at) ' +
-        'VALUES ($1, $2, $3) )', [tokenHash, userId, expiresAt]);
+    await pool.query('INSERT INTO staff_sessions(token_hash, user_id, expires_at) VALUES ($1, $2, $3) ', [tokenHash, userId, expiresAt]);
     const cookieStore = await cookies();
     cookieStore.set(COOKIE_NAME, token, {
         httpOnly: true,

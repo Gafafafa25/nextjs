@@ -1,9 +1,7 @@
 export default function Admin2Panel() {
     return (
         <div>
-            <p>
-                text panel admin
-            </p>
+            <h1>Admin2Panel</h1>
         </div>
     )
 }
