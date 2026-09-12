@@ -20,6 +20,7 @@ export default function LoginForm() {
             body: JSON.stringify({login: login, password: password})
         })
         const data = await response.json()
+        console.log(data, " data")
         if (!data.ok) {
             setErrorMessage("Login error")
             return
@@ -28,26 +29,41 @@ export default function LoginForm() {
     }
 
     return (
-        <div>
-            <p>
-                text login form
-            </p>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Login<input type="text" required value={login}
-                                onChange={(e) => {
-                                    setLogin(e.target.value)
-                                }}/>
-                </label>
-                <label>
-                    Password<input type="password" required value={password}
-                                   onChange={(e) => {
-                                       setPassword(e.target.value)
-                                   }}/>
-                </label>
-                <button type="submit">Login</button>
-            </form>
-            {errorMessage && (<p>Message: {errorMessage}</p>)}
-        </div>
+        <main>
+            <section className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+                <h1 className="text-4xl font-bold text-gray-900 mb-6">Login</h1>
+                <p className="text-lg text-gray-700 leading-relaxed">Access your account</p>
+                <form onSubmit={handleSubmit} className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">
+                        Login<input type="text" value={login}
+                                    onChange={(e) => {
+                                        setLogin(e.target.value)
+                                    }}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none
+                                           focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50
+                                           disabled:cursor-not-allowed"
+                                    required/>
+                    </label>
+                    <label className="block text-sm font-medium text-gray-700">
+                        Password<input type="password" value={password}
+                                       onChange={(e) => {
+                                           setPassword(e.target.value)
+                                       }}
+                                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none
+                                           focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50
+                                           disabled:cursor-not-allowed"
+                                       required/>
+                    </label>
+                    <button
+                        type="submit"
+                        className="w-full px-3 py-2 rounded-md border border-gray-300 bg-white text-gray-700
+                                    hover:bg-gray-50 hover:border-gray-400
+                                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                                    disabled:opacity-50 disabled:cursor-not-allowed"
+                    >Login</button>
+                </form>
+                {errorMessage && (<p>Message: {errorMessage}</p>)}
+            </section>
+        </main>
     )
 }

@@ -50,9 +50,9 @@ export async function getCurrentAdmin(): Promise<CurrentAdmin | null> {
     const token = (await cookies()).get(COOKIE_NAME)?.value;
     if (!token) return null;
     const result = await pool.query<AdminRow>('SELECT users.id, users.login, users.role ' +
-        'FROM staff_sessions AS sessions' +
-        'JOIN staff_users AS users ON users.id = sessions.user_id' +
-        'WHERE sessions.token_hash=$1 AND sessions.expires_at > NOW()' +
+        'FROM staff_sessions AS sessions ' +
+        'JOIN staff_users AS users ON users.id = sessions.user_id ' +
+        'WHERE sessions.token_hash=$1 AND sessions.expires_at > NOW() ' +
         "AND users.is_active=true AND users.role='admin'", [hashToken(token)]);
     return result.rows[0] ?? null;
 }

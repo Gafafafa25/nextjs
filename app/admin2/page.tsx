@@ -1,11 +1,12 @@
 import Admin2Panel from "@/app/components/Admin2Panel";
-import LoginForm from "@/app/components/Admin2Panel";
+import LoginForm from "@/app/components/LoginForm";
 import {getCurrentAdmin} from "@/app/lib/admin2-auth";
 
 export const dynamic = "force-dynamic"
 
 export default async function Admin2Page() {
     const admin = await getCurrentAdmin()
+    console.log(admin, " admin")
     if (!admin) {
         return <LoginForm/>
     }
