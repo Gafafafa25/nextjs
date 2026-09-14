@@ -61,7 +61,7 @@ export async function deleteCurrentAdminSession(): Promise<void> {
     const cookie = await cookies();
     const token = cookie.get(COOKIE_NAME)?.value;
     if (token) {
-        await pool.query('DELETE staff_sessions WHERE token_hash=$1', [hashToken(token)]);
+        await pool.query('DELETE FROM staff_sessions WHERE token_hash=$1', [hashToken(token)]);
         cookie.delete(COOKIE_NAME);
     }
 }

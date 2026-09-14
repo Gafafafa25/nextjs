@@ -17,7 +17,7 @@ export default function LogoutButton() {
             console.log(res, "res")
             if (!res.ok) throw new Error('Network response was not ok')
 
-            router.push('/api/admin2/login')
+            router.push('/admin2')
             router.refresh()
 
             // router.replace('/api/admin2/login')
