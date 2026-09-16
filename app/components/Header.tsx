@@ -1,8 +1,10 @@
 import Link from "next/link";
 import Image from 'next/image';
 import LogoutButton from "@/app/components/LogoutButton";
+import {getCurrentAdmin} from "@/app/lib/admin2-auth";
 
-export default function Header() {
+export default async function Header() {
+    const admin = await getCurrentAdmin()
 
     return (
         <header className="flex items-center justify-between px-6 py-4 bg-white border-b shadow-sm">
@@ -14,8 +16,8 @@ export default function Header() {
                 <Link href="/about">About</Link>
                 <Link href="/contacts">Contacts</Link>
                 <Link href="/products">Products</Link>
-                <LogoutButton/>
-                {/*or button login*/}
+
+                {admin && (<LogoutButton/>)}
             </nav>
         </header>
     );

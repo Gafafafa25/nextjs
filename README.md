@@ -157,3 +157,13 @@ values (
 )
 ```
 
+```sql
+INSERT INTO products (id, name, price, image, description)
+values ('p2','whey', 2500,'/images/products/whey.jpg','Whey protein supports muscle growth and recovery daily...'),
+       ('p3','spray', 3000, '/images/products/spray.jpg', 'Spray ensures light and even application every time...'),
+       ('p4','shower-gel',1500,'/images/products/shower-gel.jpg','Shower gel delicately cleanses and softens the skin...'),
+       ('p5', 'body-lotion', 2500, '/images/products/body-lotion.jpg', 'Body lotion deeply moisturizes and nourishes the skin...'),
+       ('p6', 'facial-peeling', 4000, '/images/products/facial-peeling.jpg', 'Facial peeling gently removes dead skin cells each use...')
+```
+
+
