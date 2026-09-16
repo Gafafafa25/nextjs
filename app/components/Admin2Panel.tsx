@@ -15,7 +15,6 @@ const emptyForm = {
 export default function Admin2Panel() {
     const [form, setForm] = useState(emptyForm)
     const [products, setProducts] = useState<Product[]>(getProducts())
-    console.log(products, "products")
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();

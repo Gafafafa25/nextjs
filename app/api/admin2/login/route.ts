@@ -3,10 +3,8 @@ import {authenticateAdmin, createAdminSession} from "@/app/lib/admin2-auth";
 
 export async function POST(request: Request) {
     let body: unknown;
-    // console.log(await request.json(), "req1");
     try {
         body = await request.json()
-        console.log(body, " body")
     } catch {
         return NextResponse.json({status: 400, statusText: "Invalid Request1"})
     }
