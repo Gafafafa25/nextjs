@@ -8,8 +8,8 @@ export const dynamic = "force-dynamic"
 export default async function Admin2Page() {
     const admin = await getCurrentAdmin()
     if (!admin) {
-        return <RegisterForm/>
-        // return <LoginForm/>
+        // return <RegisterForm/>
+        return <LoginForm/>
     }
     return (
         <Admin2Panel/>

@@ -24,7 +24,10 @@ export default function RegisterForm() {
             body: JSON.stringify(form)
         })
         const data = await response.json()
-        // console.log(data, " data")
+        console.log(data, " data")
+        alert("added user")
+        setForm(emptyForm)
+
         if (!data.ok) {
             setMessage("Register error")
         } else {

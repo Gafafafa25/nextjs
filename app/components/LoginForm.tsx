@@ -65,11 +65,11 @@ export default function LoginForm() {
                     </button>
                 </form>
                 {errorMessage && (<p>Message: {errorMessage}</p>)}
-                <p className="mt-4 text-center text-sm text-gray-600">
-                    <Link href="/api/admin2/register" className="text-blue-600 hover:underline">
-                        Register
-                    </Link>
-                </p>
+                {/*<p className="mt-4 text-center text-sm text-gray-600">*/}
+                {/*    <Link href="/api/admin2/register" className="text-blue-600 hover:underline">*/}
+                {/*        Register*/}
+                {/*    </Link>*/}
+                {/*</p>*/}
             </section>
         </main>
     )

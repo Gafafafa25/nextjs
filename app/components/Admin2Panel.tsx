@@ -4,6 +4,7 @@ import {FormEvent, useState} from "react";
 import {createId, getProducts} from "@/app/lib/products";
 import {Product} from "@/app/types/product";
 import ProductsGrid from "@/app/components/ProductsGrid";
+import RegisterForm from "@/app/components/RegisterForm";
 
 const emptyForm = {
     name: "",
@@ -33,6 +34,7 @@ export default function Admin2Panel() {
         <main>
             <section className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
                 <h1 className="text-4xl font-bold text-gray-900 mb-6">Admin</h1>
+                <RegisterForm/>
                 <p className="text-lg text-gray-700 leading-relaxed">Add product:</p>
                 <form onSubmit={handleSubmit} className="space-y-2">
                     <label className="block text-sm font-medium text-gray-700">Name

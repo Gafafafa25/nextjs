@@ -21,6 +21,7 @@ export async function POST(request: Request) {
     }
 
     const user = await createUser(body.login, body.password, body.role)
+    console.log(user, "user")
     if (!user) {
         return NextResponse.json({status: 400, statusText: "Invalid Request5"})
     }
