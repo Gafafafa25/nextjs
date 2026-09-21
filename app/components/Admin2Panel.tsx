@@ -14,7 +14,7 @@ const emptyForm = {
 }
 
 
-export default function Admin2Panel() {
+export default function Admin2Panel({login, role}: {login: string, role: string}) {
     const [form, setForm] = useState(emptyForm)
     const [products, setProducts] = useState<Product[]>(getProducts())
 
@@ -33,7 +33,9 @@ export default function Admin2Panel() {
     return (
         <main>
             <section className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-                <h1 className="text-4xl font-bold text-gray-900 mb-6">Admin</h1>
+                <h1 className="text-4xl font-bold text-gray-900 mb-6">Admin Panel</h1>
+                <p className="text-lg text-gray-700 leading-relaxed">Hello, {login}</p>
+                <p className="text-lg text-gray-700 leading-relaxed">Role: {role}</p>
                 <RegisterForm/>
                 <p className="text-lg text-gray-700 leading-relaxed">Add product:</p>
                 <form onSubmit={handleSubmit} className="space-y-2">
