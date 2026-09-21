@@ -166,4 +166,6 @@ values ('p2','whey', 2500,'/images/products/whey.jpg','Whey protein supports mus
        ('p6', 'facial-peeling', 4000, '/images/products/facial-peeling.jpg', 'Facial peeling gently removes dead skin cells each use...')
 ```
 
-
+```sql
+ALTER TABLE staff_users ADD CONSTRAINT unique_login  UNIQUE (login);
+```

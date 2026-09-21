@@ -19,6 +19,14 @@ function hashToken(token: string): string {
     return createHash('sha256').update(token).digest('hex')
 }
 
+export async function createUser(login: string, password: string, role: string) {
+    const result = await pool.query<AdminRow>(
+        'INSERT INTO staff_users (login, password, role) ' +
+        'VALUES ($1, crypt($2, password) , $3)', [login, password, role]
+    )
+    return result.rows[0]
+}
+
 export async function authenticateAdmin(login: string, password: string): Promise<CurrentAdmin | null> {
     const result = await pool.query<AdminRow>(
         'SELECT id, login, role ' +

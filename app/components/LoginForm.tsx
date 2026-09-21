@@ -2,6 +2,7 @@
 
 import {FormEvent, useState} from "react";
 import {useRouter} from "next/navigation";
+import Link from "next/link";
 
 export default function LoginForm() {
     const [login, setLogin] = useState("")
@@ -20,7 +21,7 @@ export default function LoginForm() {
             body: JSON.stringify({login: login, password: password})
         })
         const data = await response.json()
-        console.log(data, " data")
+        // console.log(data, " data")
         if (!data.ok) {
             setErrorMessage("Login error")
             return
@@ -60,9 +61,15 @@ export default function LoginForm() {
                                     hover:bg-gray-50 hover:border-gray-400
                                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
                                     disabled:opacity-50 disabled:cursor-not-allowed"
-                    >Login</button>
+                    >Login
+                    </button>
                 </form>
                 {errorMessage && (<p>Message: {errorMessage}</p>)}
+                <p className="mt-4 text-center text-sm text-gray-600">
+                    <Link href="/api/admin2/register" className="text-blue-600 hover:underline">
+                        Register
+                    </Link>
+                </p>
             </section>
         </main>
     )
