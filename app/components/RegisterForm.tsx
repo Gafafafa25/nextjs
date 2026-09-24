@@ -24,7 +24,7 @@ export default function RegisterForm() {
             body: JSON.stringify(form)
         })
         const data = await response.json()
-        console.log(data, " data")
+        // console.log(data, " data")
         alert("added user")
         setForm(emptyForm)
 
@@ -40,8 +40,8 @@ export default function RegisterForm() {
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-6">Register</h1>
-            <p className="text-lg text-gray-700 leading-relaxed">Add new user</p>
+            <h1 className="text-4xl font-bold text-gray-900 mb-6">Add user</h1>
+            {/*<p className="text-lg text-gray-700 leading-relaxed">Add new user</p>*/}
             <form onSubmit={handleSubmit} className="space-y-2">
                 <label className="block text-sm font-medium text-gray-700">Login
                     <input

@@ -32,7 +32,8 @@ export async function authenticateAdmin(login: string, password: string): Promis
         'SELECT id, login, role ' +
         'FROM staff_users ' +
         'WHERE login=$1 AND password=crypt($2, password) ' +
-        "AND is_active=true AND role='admin'", [login, password]
+        "AND is_active=true", [login, password]
+        // "AND is_active=true AND role='admin'", [login, password]
     )
     return result.rows[0] ?? null
 }
@@ -61,7 +62,8 @@ export async function getCurrentAdmin(): Promise<CurrentAdmin | null> {
         'FROM staff_sessions AS sessions ' +
         'JOIN staff_users AS users ON users.id = sessions.user_id ' +
         'WHERE sessions.token_hash=$1 AND sessions.expires_at > NOW() ' +
-        "AND users.is_active=true AND users.role='admin'", [hashToken(token)]);
+        "AND users.is_active=true", [hashToken(token)]);
+        // "AND users.is_active=true AND users.role='admin'", [hashToken(token)]);
     return result.rows[0] ?? null;
 }
 

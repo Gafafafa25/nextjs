@@ -1,5 +1,5 @@
 import {NextResponse} from "next/server";
-import {authenticateAdmin, createAdminSession, createUser} from "@/app/lib/admin2-auth";
+import {createUser} from "@/app/lib/admin2-auth";
 
 export async function POST(request: Request) {
     let body: unknown;
@@ -21,11 +21,10 @@ export async function POST(request: Request) {
     }
 
     const user = await createUser(body.login, body.password, body.role)
-    console.log(user, "user")
+    // console.log(user, "user")
     if (!user) {
         return NextResponse.json({status: 400, statusText: "Invalid Request5"})
     }
-    await authenticateAdmin(body.login, body.password)
-    await createAdminSession(user.id)
+
     return NextResponse.json({login: user.login, role: user.role, ok: true})
 }
