@@ -172,3 +172,15 @@ ALTER TABLE staff_users ADD CONSTRAINT unique_login  UNIQUE (login);
 
 - local - add `.env.local` with database_url:
 - `DATABASE_URL=postgresql://`userName`:`password`@localhost:5433/`dbName
+
+```sql
+ALTER TABLE staff_users
+DROP CONSTRAINT staff_users_role_check
+```
+
+```sql
+ALTER TABLE staff_users
+ADD CONSTRAINT staff_users_role_check
+CHECK (role IN ('admin', 'manager', 'intern'))
+```
+
