@@ -1,3 +1,5 @@
+"use client"
+
 import {useState} from "react";
 import RegisterForm from "@/app/components/RegisterForm";
 import ProductForm from "@/app/components/ProductForm";

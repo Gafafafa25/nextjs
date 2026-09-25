@@ -2,12 +2,9 @@ import AdminAccess from "@/app/components/AdminAccess";
 import {getProducts} from "@/app/lib/products-db";
 import ManagerAccess from "@/app/components/ManagerAccess";
 import ProductsGrid from "@/app/components/ProductsGrid";
+import {Product} from "@/app/types/product";
 
-
-
-// export default async function Admin2Panel({login, role}: { login: string, role: string }) {
-export default function Admin2Panel({login, role}: { login: string, role: string }) {
-    // const products = await getProducts();
+export default function Admin2Panel({login, role, products}: { login: string, role: string, products: Product[] }) {
     return (
         <main>
             <section className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
@@ -31,7 +28,7 @@ export default function Admin2Panel({login, role}: { login: string, role: string
                 <div>
                     <h2 className="text-3xl font-bold mb-8 text-gray-900">Products</h2>
                 </div>
-                {/*<ProductsGrid products={products}/>*/}
+                <ProductsGrid products={products}/>
             </article>
         </main>
     )
