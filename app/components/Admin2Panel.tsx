@@ -7,6 +7,8 @@ import ProductsGrid from "@/app/components/ProductsGrid";
 import RegisterForm from "@/app/components/RegisterForm";
 import ProductForm from "@/app/components/ProductForm";
 import {useIntersection} from "next/dist/client/use-intersection";
+import AdminAccess from "@/app/components/AdminAccess";
+import ManagerAccess from "@/app/components/ManagerAccess";
 
 // const emptyForm = {
 //     name: "",
@@ -43,52 +45,17 @@ export default function Admin2Panel({login, role}: { login: string, role: string
                     <p className="text-3xl font-bold mb-8 text-gray-900">Hello, {login}! Access: {role}</p>
                 </div>
                 {/*for admin*/}
-                {role === 'admin' && (
-                    <div>
-                        <div className="flex items-center justify-between px-6 py-4 bg-white border-b shadow-sm">
-                            <button type="button"
-                                    onClick={() => {
-                                        setShowProductForm(false)
-                                        setShowRegisterForm(true)
-                                    }}>Add user
-                            </button>
-                            <button type="button" onClick={() => {
-                                setShowRegisterForm(false)
-                                setShowProductForm(true)
-                            }}>Add product
-                            </button>
-                        </div>
-                        <div>
-                            {showRegisterForm && (
-                                <RegisterForm/>
-                            )}
-                            {showProductForm && (
-                                <ProductForm/>
-                            )}
-                        </div>
-                    </div>
-                )}
-                {/*<div className="flex items-center justify-between px-6 py-4 bg-white border-b shadow-sm">*/}
-                {/*    <button type="button"*/}
-                {/*            onClick={() => {*/}
-                {/*                setShowProductForm(false)*/}
-                {/*                setShowRegisterForm(true)*/}
-                {/*            }}>Add user*/}
-                {/*    </button>*/}
-                {/*    <button type="button" onClick={() => {*/}
-                {/*        setShowRegisterForm(false)*/}
-                {/*        setShowProductForm(true)*/}
-                {/*    }}>Add product*/}
-                {/*    </button>*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*    {showRegisterForm && (*/}
-                {/*        <RegisterForm/>*/}
-                {/*    )}*/}
-                {/*    {showProductForm && (*/}
-                {/*        <ProductForm/>*/}
-                {/*    )}*/}
-                {/*</div>*/}
+                <div>
+                    {role === 'admin' && (
+                        <AdminAccess/>
+                    )}
+                </div>
+                <div>
+                    {role === 'manager' && (
+                        <ManagerAccess/>
+                    )}
+                </div>
+                {/*todo: intern*/}
 
 
             </section>

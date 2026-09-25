@@ -169,3 +169,6 @@ values ('p2','whey', 2500,'/images/products/whey.jpg','Whey protein supports mus
 ```sql
 ALTER TABLE staff_users ADD CONSTRAINT unique_login  UNIQUE (login);
 ```
+
+- local - add `.env.local` with database_url:
+- `DATABASE_URL=postgresql://`userName`:`password`@localhost:5433/`dbName
