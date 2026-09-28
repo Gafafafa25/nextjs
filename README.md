@@ -184,3 +184,14 @@ ADD CONSTRAINT staff_users_role_check
 CHECK (role IN ('admin', 'manager', 'intern'))
 ```
 
+## To save local files(route.ts):
+- process.swd() - return current dir
+```ts
+const uploadsDir = join(process.cwd(), 'uploads')
+```
+-if (!has current dir) - create
+```ts
+await mkdir(uploadsDir, {recursive: true})
+```
+
+

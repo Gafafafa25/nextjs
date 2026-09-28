@@ -1,5 +1,4 @@
 import AdminAccess from "@/app/components/AdminAccess";
-import {getProducts} from "@/app/lib/products-db";
 import ManagerAccess from "@/app/components/ManagerAccess";
 import ProductsGrid from "@/app/components/ProductsGrid";
 import {Product} from "@/app/types/product";
@@ -28,7 +27,7 @@ export default function Admin2Panel({login, role, products}: { login: string, ro
                 <div>
                     <h2 className="text-3xl font-bold mb-8 text-gray-900">Products</h2>
                 </div>
-                <ProductsGrid products={products}/>
+                {/*<ProductsGrid products={products}/>*/}
             </article>
         </main>
     )
