@@ -146,7 +146,7 @@ values (
     'manager'
 )
 ```
-
+N
 ```sql
 INSERT INTO staff_users (login, password, role, is_active)
 values (

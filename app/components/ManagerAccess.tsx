@@ -10,7 +10,7 @@ export default function ManagerAccess() {
         <div>
             <div className="flex items-center justify-between px-6 py-4 bg-white border-b shadow-sm">
                 <button type="button" onClick={() => {
-                    setShowProductForm(!setShowProductForm)
+                    setShowProductForm(!showProductForm)
                 }}>Add product
                 </button>
             </div>

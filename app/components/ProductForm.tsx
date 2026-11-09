@@ -7,6 +7,7 @@ import {createId} from "@/app/lib/products";
 const emptyForm = {
     name: "",
     price: 0,
+    // todo: убрать image - ?
     image: "",
     description: ""
 }
@@ -36,31 +37,19 @@ export default function ProductForm() {
 
         if (!files || files.length === 0) return;
         const uploadData = new FormData()
-        // const filesArray = Array.from(files) as File[]
-        // files.forEach((file) => {
-        //     uploadData.append('files', file);
-        // });
 
         Array.from(files).forEach((file) => {
             uploadData.append('files', file);
         });
 
-        // filesArray.forEach((file) => {
-        //     uploadData.append('files', file);
-        // });
-
-        // Array.from(files).forEach(file => {
-        //     uploadData.append('files', file)
-        // })
-        // uploadData.append("file", file)
-        console.log(uploadData, "uploadData")
+        // console.log(uploadData, "uploadData")
 
         const uploadResponse = await fetch("/api/products/upload", {
             method: "POST",
             body: uploadData
         })
         const uploadResult = await uploadResponse.json()
-        console.log(uploadResult, " res upload")
+        // console.log(uploadResult, " res upload")
         if (!uploadResult) {
             setMessage(uploadResult.error)
         }
@@ -109,14 +98,10 @@ export default function ProductForm() {
                 <label className="block text-sm font-medium text-gray-700">Add image
                     <input
                         type="file"
-                        // accept="image/*"
                         multiple
                         accept=".jpeg,.jpg,.png"
                         ref={fileInputRef}
                         onChange={handleChange}
-                        // onChange={(e) => {
-                        //     setFile(e.target.files?.[0] ?? null)
-                        // }}
                         className="text-sm text-gray-500 file:border-0 file:bg-emerald-50 file:text-emerald-700 file:py-2.5
                         file:px-5 file:rounded-xl file:font-bold file:cursor-pointer hover:file:bg-emerald-100 hover:file:text-emerald-900
                          focus:outline-none focus:ring-2 focus:ring-emerald-200"
@@ -124,7 +109,7 @@ export default function ProductForm() {
                 </label>
                 {files && (
                     <div className="mt-4 text-sm text-gray-600">
-                        Выбрано файлов: {files.length}
+                        Files selected: {files.length}
                     </div>
                 )}
                 <label className="block text-sm font-medium text-gray-700">Description

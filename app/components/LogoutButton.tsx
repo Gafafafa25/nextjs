@@ -14,7 +14,7 @@ export default function LogoutButton() {
                 }
             })
             // await fetch('/api/admin2/logout', {method: 'POST'})
-            console.log(res, "res")
+            // console.log(res, "res")
             if (!res.ok) throw new Error('Network response was not ok')
 
             router.push('/admin2')

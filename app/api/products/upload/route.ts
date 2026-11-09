@@ -1,6 +1,7 @@
 import {NextResponse} from "next/server";
 import {join} from "path";
 import {mkdir, writeFile} from "node:fs/promises";
+import {existsSync} from "node:fs"
 
 export async function POST(request: Request) {
     let formData: FormData
@@ -15,24 +16,26 @@ export async function POST(request: Request) {
     // console.log(files, "files")
 
 
-
     // Простая валидация: только файлы, размер ≤ 5 МБ
     for (const file of files) {
         console.log(file, "i")
-        const extention = file.type
-        if (extention !== "image/jpg" && extention !== "image/jpeg" && extention !== "image/png") {
-            return NextResponse.json({status: 400, statusText: "Invalid Request3"})
+        const extension = file.type
+        if (extension !== "image/jpg" && extension !== "image/jpeg" && extension !== "image/png") {
+            return NextResponse.json({status: 400, statusText: "Invalid Request2"})
         }
         if (file.size > 5 * 1024 * 1024) {
             return NextResponse.json(
                 {error: `File ${(file as File).name} is too large and will not be attached.`}, {status: 400}
             )
         }
-        const fileName = `${Date.now()}/${extention}`
+        //todo: extension - .${extension} - .jpg
+        const fileName = `${Date.now()}.jpg`
 
-        const uploadsDir = join(process.cwd(), fileName)
+        const uploadsDir = join(process.cwd(), "uploadsDir")
 
-        await mkdir(uploadsDir, {recursive: true})
+        if (!existsSync(uploadsDir)) {
+            await mkdir(uploadsDir, {recursive: true})
+        }
 
         const filePath = join(uploadsDir, fileName)
 
