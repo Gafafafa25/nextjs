@@ -14,9 +14,8 @@ export async function POST(request: Request) {
     if (!("id" in body) || !("name" in body) || !("price" in body) || !("image" in body) || !("description" in body)) {
         return NextResponse.json({status: 400, statusText: "Invalid Request3"})
     }
-    // check type of body.price === numeric or number or string ?
     if (typeof body.id !== "string" || typeof body.name !== "string" || typeof body.price !== "number"
-        || typeof body.image !== "string" || typeof body.description !== "string") {
+         || typeof body.description !== "string" || !(Array.isArray(body.image)) || !((body.image).every((img) => typeof img === "string"))) {
         return NextResponse.json({status: 400, statusText: "Invalid Request4"})
     }
 

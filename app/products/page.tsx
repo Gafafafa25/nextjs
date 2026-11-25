@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 };
 
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            <ProductsGrid products={getProducts()}/>
+        <div className="p-4 gap-3 max-w-3xl mx-auto">
+            <ProductsGrid products={await getProducts()}/>
         </div>
     );
 }

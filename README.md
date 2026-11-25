@@ -187,11 +187,18 @@ CHECK (role IN ('admin', 'manager', 'intern'))
 ## To save local files(route.ts):
 - process.swd() - return current dir
 ```ts
-const uploadsDir = join(process.cwd(), 'uploads')
+const uploadsDir = join(process.cwd(),"public", 'uploads')
 ```
 -if (!has current dir) - create
 ```ts
 await mkdir(uploadsDir, {recursive: true})
+```
+
+```sql
+ALTER TABLE products
+ALTER COLUMN image
+TYPE text[]
+USING ARRAY[image::text]
 ```
 
 

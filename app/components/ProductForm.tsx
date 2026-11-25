@@ -39,10 +39,10 @@ export default function ProductForm() {
         const uploadData = new FormData()
 
         Array.from(files).forEach((file) => {
-            uploadData.append('files', file);
-        });
-
-        // console.log(uploadData, "uploadData")
+            uploadData.append('files', file)
+            //
+            uploadData.append('names', file.name)
+        })
 
         const uploadResponse = await fetch("/api/products/upload", {
             method: "POST",
@@ -54,11 +54,14 @@ export default function ProductForm() {
             setMessage(uploadResult.error)
         }
 
+        const filesNames = uploadResult.filesNames
+
         const product: Product = {
             id: createId(),
             name: form.name,
             price: Number(form.price),
-            image: form.image,
+            // image: form.image,
+            image: filesNames as string[],
             description: form.description
         }
 

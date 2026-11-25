@@ -5,7 +5,6 @@ import {existsSync} from "node:fs"
 
 export async function POST(request: Request) {
     let formData: FormData
-    // let formData;
     try {
         formData = await request.formData()
     } catch {
@@ -13,12 +12,14 @@ export async function POST(request: Request) {
     }
 
     const files = formData.getAll('files') as File[]
-    // console.log(files, "files")
+
+    const fileNameBase = `${Date.now()}`
+    const filesNames = []
+    let fileNumber = 1
 
 
     // Простая валидация: только файлы, размер ≤ 5 МБ
     for (const file of files) {
-        console.log(file, "i")
         const extension = file.type
         if (extension !== "image/jpg" && extension !== "image/jpeg" && extension !== "image/png") {
             return NextResponse.json({status: 400, statusText: "Invalid Request2"})
@@ -28,10 +29,12 @@ export async function POST(request: Request) {
                 {error: `File ${(file as File).name} is too large and will not be attached.`}, {status: 400}
             )
         }
-        //todo: extension - .${extension} - .jpg
-        const fileName = `${Date.now()}.jpg`
 
-        const uploadsDir = join(process.cwd(), "uploadsDir")
+        const fileName = `${fileNameBase}_${fileNumber}.jpg`
+        fileNumber++
+        filesNames.push(fileName)
+
+        const uploadsDir = join(process.cwd(), "public", "uploadsDir")
 
         if (!existsSync(uploadsDir)) {
             await mkdir(uploadsDir, {recursive: true})
@@ -41,5 +44,5 @@ export async function POST(request: Request) {
 
         await writeFile(filePath, Buffer.from(await file.arrayBuffer()))
     }
-    return NextResponse.json({files: files, ok: true})
+    return NextResponse.json({files: files, ok: true, filesNames: filesNames})
 }

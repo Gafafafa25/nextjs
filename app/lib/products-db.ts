@@ -7,9 +7,10 @@ export async function getProducts(): Promise<Product[]> {
     return result.rows
 }
 
-export async function addProduct(id: string, name: string, price: number, image: string, description: string) {
+export async function addProduct(id: string, name: string, price: number, image: string[], description: string) {
     const result = await pool.query('' +
-        'INSERT INTO products (id, name, price, image, description)' +
-        'values ($1, $2, $3, $4, $5)', [id, name, price, image, description])
+        'INSERT INTO products (id, name, price, image, description) ' +
+        'VALUES ($1, $2, $3, $4::text[], $5) ' +
+        'RETURNING *', [id, name, price, image, description])
     return result.rows[0]
 }
